@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import fapple from "../assets/fapple.mp4";
+import crazy from "../assets/crazy.gif";
+import { Button } from "@material-ui/core";
 function Hero() {
   return (
     <HeroContainer>
@@ -9,15 +11,11 @@ function Hero() {
       </HeroBg>
       <HeroContent>
         <HeroItemsTitle>
-          <h1>Love</h1>
-          <h1> your self</h1>
+          <img src={crazy} alt="" />
+          <p>Sweets, Smoothies</p>
+          <p>desert e-commerce</p>
+          <Button>SHOP NOW</Button>
         </HeroItemsTitle>
-        <HeroItems>
-          <p>
-            Our cold-pressed juices give you the maximum amount of nutrients we
-            can possibly sqeeze into each bottle.
-          </p>
-        </HeroItems>
       </HeroContent>
     </HeroContainer>
   );
@@ -26,15 +24,33 @@ function Hero() {
 export default Hero;
 const HeroContainer = styled.div`
   margin-top: -80px;
+
   position: relative;
   height: 100vh;
   z-index: 1;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  :before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 2;
+
+    background: linear-gradient(
+        180deg,
+        rgb(255, 61, 96, 1) 0%,
+        rgb(255, 61, 96, 0.8) 50%
+      ),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.01) 0%, transparent 10%);
+  }
 `;
 const HeroBg = styled.div`
   position: absolute;
+
   top: 0;
   bottom: 0;
   right: 0;
@@ -53,28 +69,33 @@ const HeroContent = styled.div`
   z-index: 3;
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
 `;
 const HeroItemsTitle = styled.div`
   display: flex;
   flex-direction: column;
-  position: absolute;
-
-  left: 20%;
-  max-height: 100%;
+  justify-content: center;
+  align-items: center;
   color: #fff;
   line-height: 1.1;
   font-weight: bold;
-  border-left: 30px solid red;
-  border-bottom: 30px solid red;
-  h1 {
-    font-size: clamp(1.5rem, 6vw, 4rem);
+  img {
+    height: auto;
+    max-width: 100%;
   }
-`;
-const HeroItems = styled.div`
-  color: #fff;
-  line-height: 1.1;
-  font-weight: bold;
-  position: absolute;
-  left: 20%;
-  top: 80%;
+  p {
+    text-transform: uppercase;
+    font-size: clamp(1rem, 3vw, 3rem);
+    margin-bottom: 1rem;
+  }
+  button {
+    background: #00cad0;
+    color: #fff;
+    outline: none;
+    font-weight: bold;
+    opacity: 1;
+    :hover {
+      opacity: 0.7;
+    }
+  }
 `;
