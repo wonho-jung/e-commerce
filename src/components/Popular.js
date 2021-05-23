@@ -42,8 +42,13 @@ const PopularLeft = styled.div`
   position: relative;
   background-color: #f6f5dd;
   flex: 0.4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   img {
-    max-width: 100%;
+    padding: 2rem;
+    padding-left: 0;
+    max-width: 400px;
   }
 `;
 const PopularRight = styled.div`
@@ -57,8 +62,7 @@ const PopularRight = styled.div`
     max-width: 400px;
     top: 100px;
     right: 10%;
-    :hover{
-        tr
+    :hover {
     }
   }
 `;
@@ -84,8 +88,9 @@ const Content = styled.div`
 `;
 const LeftPrice = styled.div`
   position: absolute;
-  top: 150px;
-  left: 100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-70%, -50%);
   color: #f6f5dd;
   h1 {
     font-size: 3.5rem;
@@ -93,5 +98,8 @@ const LeftPrice = styled.div`
   h2 {
     font-size: 2rem;
     text-decoration-line: line-through;
+  }
+  p {
+    font-size: clamp(1rem, 3vw, 3rem);
   }
 `;

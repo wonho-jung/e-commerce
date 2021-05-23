@@ -16,7 +16,7 @@ function Header() {
       </MobileNavItme>
       <NavItem>
         <NavLink>Home</NavLink>
-        <NavLink>Popular</NavLink>
+        <NavLink>About</NavLink>
         <NavLink>Products</NavLink>
         <NavLink>Contact</NavLink>
         <NavLink>
