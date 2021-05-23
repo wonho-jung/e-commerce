@@ -50,6 +50,12 @@ const PopularLeft = styled.div`
     padding-left: 0;
     max-width: 400px;
   }
+  @media screen and (max-width: 500px) {
+    img {
+      padding-left: 0;
+      max-width: 300px;
+    }
+  }
 `;
 const PopularRight = styled.div`
   background-color: #fcbc03;
