@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import About from "./components/About";
 import Banner from "./components/Banner";
 import Fruit from "./components/Fruit";
 import Header from "./components/Header";
@@ -14,6 +15,7 @@ function App() {
       <Banner />
       <Popular />
       <Fruit />
+      <About />
     </div>
   );
 }
