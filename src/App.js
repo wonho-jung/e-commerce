@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import About from "./components/About";
 import Banner from "./components/Banner";
+import Contact from "./components/Contact";
 import Fruit from "./components/Fruit";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
@@ -16,6 +17,7 @@ function App() {
       <Popular />
       <Fruit />
       <About />
+      <Contact />
     </div>
   );
 }
