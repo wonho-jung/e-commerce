@@ -44,7 +44,7 @@ const NavImg = styled.div`
   z-index: 100;
 
   img {
-    width: 80px;
+    width: 150px;
     height: 80px;
   }
 `;

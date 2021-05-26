@@ -4,52 +4,52 @@ import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import WatchLaterOutlinedIcon from "@material-ui/icons/WatchLaterOutlined";
 import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
 import PhoneIphoneOutlinedIcon from "@material-ui/icons/PhoneIphoneOutlined";
+import logo from "../assets/logo.png";
 function Contact() {
   return (
     <ContactContainer>
       <ContentsFirstRow>
-        <Content>
-          <LocationOnOutlinedIcon />
+        <ContentLeft>
+          <h5>Don't be shy, say Hi!</h5>
 
           <Info>
-            <h2>LOCATION</h2>
-            <p>1411 du fort</p>
-            <p>Montreal, QC</p>
+            <LocationOnOutlinedIcon />
+            <p>1411 du fort Montreal, QC</p>
           </Info>
-        </Content>
-        <Content>
-          <WatchLaterOutlinedIcon />
-
           <Info>
-            {" "}
-            <h2>HOUR</h2>
-            <p>Mon-Fri: 8:00AM - 6:00PM</p>
-            <p>Sat-Sun: 9:00AM - 8:00PM</p>
+            <WatchLaterOutlinedIcon />
+            <p>Mon-Fri: 8:00AM - 6:00PM Sunday CLOSED</p>
           </Info>
-        </Content>
+          <Info>
+            <EmailOutlinedIcon />
+
+            <p>test@test.com</p>
+          </Info>
+          <Info>
+            <PhoneIphoneOutlinedIcon />
+
+            <p>123)123-1234</p>
+          </Info>
+        </ContentLeft>
+        <ContentMid>
+          <h5>Opening Hours</h5>
+          <MidInfo>
+            <p>Monday ............................ 10:00 - 22:00</p>
+            <p>Tuesday ............................ 10:00 - 22:00</p>
+            <p>Wednesday .......................10:00 - 22:00</p>
+            <p>Thursday ........................... 10:00 - 22:00</p>
+            <p>Friday ................................. 10:00 - 22:00</p>
+            <p>Saturday ............................ 10:00 - 22:00</p>
+            <p>Sunday ......................................... CLOSED</p>
+          </MidInfo>
+        </ContentMid>
+
+        <ContentRight>
+          <Info>
+            <img src={logo} alt="" />
+          </Info>
+        </ContentRight>
       </ContentsFirstRow>
-      <ContentsSecondRow>
-        <Content>
-          <EmailOutlinedIcon />
-
-          <Info>
-            {" "}
-            <h2>E-mail</h2>
-            <p>test@test.com</p>
-            <p>test@test.com</p>
-          </Info>
-        </Content>
-        <Content>
-          <PhoneIphoneOutlinedIcon />
-
-          <Info>
-            {" "}
-            <h2>Call US</h2>
-            <p>123)123-1234</p>
-            <p>123)123-1234</p>
-          </Info>
-        </Content>
-      </ContentsSecondRow>
     </ContactContainer>
   );
 }
@@ -57,41 +57,57 @@ function Contact() {
 export default Contact;
 
 const ContactContainer = styled.div`
-  background-color: #fcbc03;
-  height: 300px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: #f29d0a;
+  padding: 2rem 3rem;
   color: #fff;
-  /* padding: 0 2rem; */
+  @media screen and (max-width: 765px) {
+    padding: 2rem 1rem;
+  }
 `;
 const ContentsFirstRow = styled.div`
-  width: 50%;
   display: flex;
   justify-content: center;
-  align-items: center;
-`;
-const ContentsSecondRow = styled.div`
-  width: 50%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const Content = styled.div`
-  width: 50%;
-  display: flex;
-  .MuiSvgIcon-root {
-    padding: 0.5rem;
-    font-size: 2rem;
+  @media screen and (max-width: 765px) {
+    flex-direction: column;
   }
-  /* padding: 0 2rem; */
-  h3 {
-    font-size: clamp(1rem, 1vw, 3rem);
+  .MuiSvgIcon-root {
+    font-size: 1rem;
+    padding: 0.4rem 0;
+    padding-right: 0.5rem;
+  }
+  h5 {
+    padding-bottom: 1rem;
   }
   p {
-    font-size: clamp(1rem, 0.5vw, 3rem);
+    padding: 0.3rem 0;
+    font-size: 0.8rem;
   }
 `;
-const Info = styled.div``;
+
+const ContentLeft = styled.div`
+  @media screen and (max-width: 765px) {
+    padding: 1rem 3rem;
+  }
+`;
+const ContentMid = styled.div`
+  padding: 0 4rem;
+  @media screen and (max-width: 765px) {
+    padding: 0 3rem;
+  }
+`;
+const ContentRight = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    height: 150px;
+  }
+
+  @media screen and (max-width: 1100px) {
+    display: none;
+  }
+`;
+const Info = styled.div`
+  display: flex;
+`;
+const MidInfo = styled.div``;
