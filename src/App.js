@@ -8,19 +8,25 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Popular from "./components/Popular";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Login from "./components/Login/Login";
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Header />
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/" exact>
+          <Header />
+          <Hero />
+          <Banner />
+          <Popular />
+          <Fruit />
+          <About />
 
-        <Hero />
-        <Banner />
-        <Popular />
-        <Fruit />
-        <About />
-        <Contact />
+          <Contact />
+        </Route>
       </Router>
     </div>
   );

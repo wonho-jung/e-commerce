@@ -32,7 +32,9 @@ function Header() {
           <p>
             Hello <span>guest</span>
           </p>
-          <Button className="mobileBtn">Log In</Button>
+          <Link>
+            <Button className="mobileBtn">Log In</Button>
+          </Link>
         </SignInContent>
 
         <NavLink href="/#home">Home</NavLink>
@@ -55,7 +57,9 @@ function Header() {
           <p>
             Hello <span>guest</span>
           </p>
-          <Button>Log In</Button>
+          <Link to="/login">
+            <Button className="desktopBtn">Log In</Button>
+          </Link>
         </SignInContent>
       </NavItem>
     </HeaderContainer>
@@ -85,6 +89,7 @@ const HeaderContainer = styled.nav`
     font-weight: 500;
     border-radius: 20px;
     padding: 10px;
+    text-decoration: none;
 
     :hover {
       background: transparent;
@@ -118,9 +123,8 @@ const HeaderContainer = styled.nav`
     }
   }
   .mobileBtn {
-    margin: 1rem 0;
-    border-radius: 0;
-    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
   }
 `;
 const NavImg = styled.div`
@@ -184,11 +188,10 @@ const MobileNav = styled.div`
   a {
     display: flex;
     justify-content: flex-start;
-    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
     padding: 1rem;
-    :last-child {
-      border-bottom: 1px solid #fff;
-    }
+    text-decoration: none;
+
     :hover {
       color: #fa4e5c;
     }
@@ -211,8 +214,12 @@ const SignInContent = styled.div`
     color: #fff;
     font-size: 10px;
   }
-  button {
-    font-size: 10px;
-    padding: 2px;
+  a {
+    text-decoration: none;
+
+    .desktopBtn {
+      font-size: 10px;
+      padding: 2px;
+    }
   }
 `;
