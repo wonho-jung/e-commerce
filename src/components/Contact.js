@@ -7,28 +7,30 @@ import PhoneIphoneOutlinedIcon from "@material-ui/icons/PhoneIphoneOutlined";
 import logo from "../assets/logo.png";
 function Contact() {
   return (
-    <ContactContainer>
+    <ContactContainer id="contact">
       <ContentsFirstRow>
         <ContentLeft>
           <h5>Don't be shy, say Hi!</h5>
 
           <Info>
             <LocationOnOutlinedIcon />
-            <p>1411 du fort Montreal, QC</p>
+            <p className="contentLeft-p">1411 du fort Montreal, QC</p>
           </Info>
           <Info>
             <WatchLaterOutlinedIcon />
-            <p>Mon-Fri: 8:00AM - 6:00PM Sunday CLOSED</p>
+            <p className="contentLeft-p">
+              Mon-Sat: 8:00AM - 6:00PM, Sunday CLOSED
+            </p>
           </Info>
           <Info>
             <EmailOutlinedIcon />
 
-            <p>test@test.com</p>
+            <p className="contentLeft-p">test@test.com</p>
           </Info>
           <Info>
             <PhoneIphoneOutlinedIcon />
 
-            <p>123)123-1234</p>
+            <p className="contentLeft-p">123)123-1234</p>
           </Info>
         </ContentLeft>
         <ContentMid>
@@ -87,6 +89,12 @@ const ContentsFirstRow = styled.div`
 const ContentLeft = styled.div`
   @media screen and (max-width: 765px) {
     padding: 1rem 3rem;
+  }
+  .contentLeft-p {
+    cursor: pointer;
+    :hover {
+      color: #fa4e5c;
+    }
   }
 `;
 const ContentMid = styled.div`

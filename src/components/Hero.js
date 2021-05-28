@@ -3,18 +3,27 @@ import styled from "styled-components";
 import fapple from "../assets/fapple.mp4";
 import crazy from "../assets/crazy.gif";
 import { Button } from "@material-ui/core";
+import AOS from "aos";
+import "aos/dist/aos.css";
 function Hero() {
+  AOS.init();
   return (
-    <HeroContainer>
+    <HeroContainer id="home">
       <HeroBg>
         <video src={fapple} type="video/mp4" autoPlay loop muted playsInline />
       </HeroBg>
       <HeroContent>
         <HeroItemsTitle>
           <img src={crazy} alt="" />
-          <p>Sweets, Smoothies</p>
-          <p>desert e-commerce</p>
-          <Button>SHOP NOW</Button>
+          <p data-aos="fade-right" data-aos-duration="1000">
+            Sweets, Smoothies
+          </p>
+          <p data-aos="fade-right" data-aos-duration="2000">
+            desert e-commerce
+          </p>
+          <Button data-aos="fade-right" data-aos-duration="3000">
+            SHOP NOW
+          </Button>
         </HeroItemsTitle>
       </HeroContent>
     </HeroContainer>
@@ -89,13 +98,17 @@ const HeroItemsTitle = styled.div`
     margin-bottom: 1rem;
   }
   button {
-    background: #00cad0;
+    background: #fcbc03;
     color: #fff;
     outline: none;
     font-weight: bold;
-    opacity: 1;
+    border-radius: 20px;
+    padding: 10px;
+
     :hover {
-      opacity: 0.7;
+      background: transparent;
+      color: #fcbc03;
+      border: 1px solid #fcbc03;
     }
   }
 `;

@@ -3,11 +3,20 @@ import React from "react";
 import styled from "styled-components";
 import triangle from "../assets/triangle.png";
 import mix from "../assets/salemixfriut.png";
+import AOS from "aos";
+import "aos/dist/aos.css";
 function Popular() {
+  AOS.init();
+
   return (
     <PopularContainer>
       <PopularLeft>
-        <img src={triangle} alt="" />
+        <img
+          src={triangle}
+          alt=""
+          data-aos="fade-right"
+          data-aos-duration="1500"
+        />
         <LeftPrice>
           <h2>$19.99</h2>
           <h1>$9.99</h1>
@@ -15,7 +24,7 @@ function Popular() {
       </PopularLeft>
 
       <PopularRight>
-        <img src={mix} alt="" />
+        <img src={mix} alt="" data-aos="fade-down" data-aos-duration="1500" />
         <Content>
           <h1>4 in the mix</h1>
 

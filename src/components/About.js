@@ -12,7 +12,7 @@ SwiperCore.use([EffectCoverflow, Pagination]);
 
 function About() {
   return (
-    <AboutContainer>
+    <AboutContainer id="about">
       <h1>What People are Saying</h1>
       <Content>
         <Swiper

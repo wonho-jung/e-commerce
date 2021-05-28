@@ -9,7 +9,7 @@ function Banner() {
   return (
     <BannerContainer>
       <BannerLeft>
-        <ContentOne>
+        <ContentOne data-aos="fade-right" data-aos-duration="1000">
           <Content>
             <h1>100% ORGANIC</h1>
             <p>
@@ -22,7 +22,7 @@ function Banner() {
           </Icon>
         </ContentOne>
 
-        <ContentTwo>
+        <ContentTwo data-aos="fade-right" data-aos-duration="1000">
           <Content>
             <h1>GOOD FOR HEALTH</h1>
             <p>
@@ -35,11 +35,11 @@ function Banner() {
           </Icon>
         </ContentTwo>
       </BannerLeft>
-      <BannerCenter>
+      <BannerCenter data-aos="fade-down" data-aos-duration="1500">
         <img src={smoothie} alt="" />
       </BannerCenter>
       <BannerRight>
-        <ContentOne>
+        <ContentOne data-aos="fade-left" data-aos-duration="1000">
           <Content>
             <h1>NO ADDITIVES</h1>
             <p>
@@ -51,7 +51,7 @@ function Banner() {
             <BlockOutlinedIcon />
           </Icon>
         </ContentOne>
-        <ContentTwo>
+        <ContentTwo data-aos="fade-left" data-aos-duration="1000">
           <Content>
             <h1>A LOT OF ENERGY</h1>
             <p>
