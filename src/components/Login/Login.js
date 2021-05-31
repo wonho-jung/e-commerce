@@ -1,8 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import fapple from "../../assets/fapple.mp4";
+import { Link, useHistory } from "react-router-dom";
+import { useState } from "react";
 
 function Login() {
+  const history = useHistory();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const logIn = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <LoginContainer>
       <LoginBg>
