@@ -3,15 +3,47 @@ import styled from "styled-components";
 import fapple from "../../assets/fapple.mp4";
 import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
+import { auth, provider } from "../firebase";
 
 function Login() {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const logIn = (e) => {
-    e.preventDefault();
+  console.log(password);
+  const onChange = (e) => {
+    const {
+      target: { name, value },
+    } = e;
+    if (name === "email") {
+      setEmail(value);
+    } else if (name === "password") {
+      setPassword(value);
+    }
   };
 
+  const resgister = (e) => {
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        history.push("/");
+        console.log(authUser);
+      })
+      .catch((err) => alert(err.message));
+  };
+
+  const signInwithGoogle = (e) => {
+    e.preventDefault();
+    auth.signInWithPopup(provider).catch((err) => alert(err.message));
+  };
+  const signIn = (e) => {
+    e.preventDefault();
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        console.log(authUser);
+      })
+      .catch((err) => alert(err.message));
+  };
   return (
     <LoginContainer>
       <LoginBg>
@@ -20,12 +52,31 @@ function Login() {
       <LoginContentBox>
         <h1>Sign in</h1>
         <form>
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="password" />
-          <button type="submit">Sign In</button>
+          <input
+            name="email"
+            value={email}
+            type="email"
+            placeholder="Email"
+            onChange={onChange}
+          />
+          <input
+            value={password}
+            name="password"
+            type="password"
+            placeholder="password"
+            onChange={onChange}
+          />
+          <button type="submit" onClick={signInwithGoogle}>
+            Sign In with Google
+          </button>
+          <button type="submit" onClick={signIn}>
+            Sign In
+          </button>
           <h4>
-            <span className="gray">New to Here? </span>
-            <span className="link">Sign up Now.</span>
+            <span className="lightorange">New to Here? </span>
+            <span className="link" onClick={resgister}>
+              Sign up Now.
+            </span>
           </h4>
         </form>
       </LoginContentBox>
@@ -105,7 +156,7 @@ const LoginContentBox = styled.div`
   h4 {
     text-align: left;
     margin-top: 30px;
-    .gray {
+    .lightorange {
       color: #fa4e5c;
     }
     .link:hover {
