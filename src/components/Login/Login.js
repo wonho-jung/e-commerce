@@ -33,7 +33,12 @@ function Login() {
 
   const signInwithGoogle = (e) => {
     e.preventDefault();
-    auth.signInWithPopup(provider).catch((err) => alert(err.message));
+    auth
+      .signInWithPopup(provider)
+      .then(() => {
+        history.push("/");
+      })
+      .catch((err) => alert(err.message));
   };
   const signIn = (e) => {
     e.preventDefault();

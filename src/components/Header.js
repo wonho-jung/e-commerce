@@ -6,10 +6,20 @@ import { Button } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import ClearIcon from "@material-ui/icons/Clear";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { login, selectUser } from "../features/userSlice";
+import { auth } from "./firebase";
+import { useDispatch } from "react-redux";
 function Header() {
+  const user = useSelector(selectUser);
   const [clicked, setClicked] = useState(false);
-
+  console.log(user?.user);
   const handleClick = () => setClicked(!clicked);
+  const dispatch = useDispatch();
+  const signOut = () => {
+    auth.signOut();
+    dispatch(login({ user: null }));
+  };
   return (
     <HeaderContainer>
       <NavImg>
@@ -30,24 +40,36 @@ function Header() {
         />
         <SignInContent>
           <p>
-            Hello <span>guest</span>
+            Hello! <span>{user ? user.user : "guest"}</span>
           </p>
-          <Link>
-            <Button className="mobileBtn">Log In</Button>
-          </Link>
+          {user ? (
+            <Link to="/login">
+              <Button className="mobileBtn" onClick={signOut}>
+                Sign Out
+              </Button>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <Button className="mobileBtn">Sign In</Button>
+            </Link>
+          )}
         </SignInContent>
 
         <NavLink href="/#home">Home</NavLink>
+        <NavLink>
+          <Link to="/products">Products</Link>
+        </NavLink>
+
         <NavLink href="/#about">About</NavLink>
-        <NavLink>Products</NavLink>
         <NavLink href="/#contact">Contact</NavLink>
       </MobileNav>
       <NavItem>
         <NavLink href="/#home">Home</NavLink>
-        <NavLink href="/#about">About</NavLink>
         <NavLink>
-          <Link>Products</Link>
+          <Link to="/products">Products</Link>
         </NavLink>
+        <NavLink href="/#about">About</NavLink>
+
         <NavLink href="/#contact">Contact</NavLink>
         <NavLink>
           <ShoppingCartOutlinedIcon />
@@ -55,11 +77,24 @@ function Header() {
 
         <SignInContent>
           <p>
-            Hello <span>guest</span>
+            Hello!{" "}
+            <span>
+              {user
+                ? `${user.user.substring(0, user.user.indexOf("@"))}`
+                : "guest"}
+            </span>
           </p>
-          <Link to="/login">
-            <Button className="desktopBtn">Log In</Button>
-          </Link>
+          {user ? (
+            <Link to="/login">
+              <Button className="desktopBtn" onClick={signOut}>
+                Sign Out
+              </Button>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <Button className="desktopBtn">Sign In</Button>
+            </Link>
+          )}
         </SignInContent>
       </NavItem>
     </HeaderContainer>
@@ -171,6 +206,7 @@ const MobileNavItme = styled.div`
   cursor: pointer;
 
   display: none;
+
   @media screen and (max-width: 768px) {
     z-index: 200;
     display: flex;
@@ -180,6 +216,7 @@ const MobileNavItme = styled.div`
 const MobileNav = styled.div`
   display: none;
   position: relative;
+
   @media screen and (max-width: 768px) {
     display: block;
     z-index: 100;
@@ -194,6 +231,10 @@ const MobileNav = styled.div`
 
     :hover {
       color: #fa4e5c;
+    }
+    a {
+      padding: 0;
+      border: none;
     }
   }
   .shoppingCart {
