@@ -1,87 +1,95 @@
 import React from "react";
 import styled from "styled-components";
 import menu from "../../assets/menu.jpg";
+import phonebg from "../../assets/phonebg.jpg";
+
 import avocado from "../../assets/avocadoShake.png";
+import bluebarryShake from "../../assets/bluebarryShake.png";
+import orangeShake from "../../assets/orangeShake.png";
+import choShakefrom from "../../assets/choShake.png";
 import { Button } from "@material-ui/core";
+import bananaSmt from "../../assets/bananaSmt.png";
+import strwberrySmt from "../../assets/strwberrySmt.png";
+import choSmt from "../../assets/choSmt.png";
+import special from "../../assets/special.png";
+
 function Products() {
   return (
     <ProductsContainer>
-      <ProductFirstRow>
+      <ProductsGrid>
         <ProductCard>
           <img src={avocado} alt="" />
           <Content>
-            <h3>Avocado Juice</h3>
-            <p>Avocado, green veg, apple</p>
+            <h3>Avocado Shake</h3>
+            <p>Avocado, green vegetables, apple</p>
             <h5>$5,99</h5>
             <Button>ADD TO CART</Button>
           </Content>
         </ProductCard>
         <ProductCard>
-          <img src={avocado} alt="" />
+          <img src={bluebarryShake} alt="" />
           <Content>
-            <h3>Avocado Juice</h3>
-            <p>Avocado, green veg, apple</p>
+            <h3>Mixed Berry Shake</h3>
+            <p>Mixed berry, banana, lemon</p>
             <h5>$5,99</h5>
             <Button>ADD TO CART</Button>
           </Content>
         </ProductCard>{" "}
         <ProductCard>
-          <img src={avocado} alt="" />
+          <img src={orangeShake} alt="" />
           <Content>
-            <h3>Avocado Juice</h3>
+            <h3>Mango Shake</h3>
+            <p>Mango, yogurt, Strawberry</p>
+            <h5>$5,99</h5>
+            <Button>ADD TO CART</Button>
+          </Content>
+        </ProductCard>
+        <ProductCard>
+          <img className="chocolate" src={choShakefrom} alt="" />
+          <Content>
+            <h3>Chocolate Shake</h3>
+            <p>Chocolate, Strawberry, banana</p>
+            <h5>$5,99</h5>
+            <Button>ADD TO CART</Button>
+          </Content>
+        </ProductCard>
+        <ProductCard>
+          <img src={bananaSmt} alt="" />
+          <Content>
+            <h3>Apple Smoothie</h3>
             <p>Avocado, green veg, apple</p>
             <h5>$5,99</h5>
             <Button>ADD TO CART</Button>
           </Content>
         </ProductCard>
         <ProductCard>
-          <img src={avocado} alt="" />
+          <img src={strwberrySmt} alt="" />
           <Content>
-            <h3>Avocado Juice</h3>
-            <p>Avocado, green veg, apple</p>
-            <h5>$5,99</h5>
-            <Button>ADD TO CART</Button>
-          </Content>
-        </ProductCard>
-      </ProductFirstRow>
-      <ProductSecondRow>
-        <ProductCard>
-          <img src={avocado} alt="" />
-          <Content>
-            <h3>Avocado Juice</h3>
-            <p>Avocado, green veg, apple</p>
-            <h5>$5,99</h5>
-            <Button>ADD TO CART</Button>
-          </Content>
-        </ProductCard>
-        <ProductCard>
-          <img src={avocado} alt="" />
-          <Content>
-            <h3>Avocado Juice</h3>
-            <p>Avocado, green veg, apple</p>
+            <h3>Strawberry Smoothie</h3>
+            <p>Strawberry, banana, apple</p>
             <h5>$5,99</h5>
             <Button>ADD TO CART</Button>
           </Content>
         </ProductCard>{" "}
         <ProductCard>
-          <img src={avocado} alt="" />
+          <img src={choSmt} alt="" />
           <Content>
-            <h3>Avocado Juice</h3>
-            <p>Avocado, green veg, apple</p>
+            <h3>Dark Smoothie</h3>
+            <p>Chocolate, Strawberry, banana</p>
             <h5>$5,99</h5>
             <Button>ADD TO CART</Button>
           </Content>
         </ProductCard>
         <ProductCard>
-          <img src={avocado} alt="" />
+          <img className="special" src={special} alt="" />
           <Content>
-            <h3>Avocado Juice</h3>
-            <p>Avocado, green veg, apple</p>
+            <h3>Galaxy</h3>
+            <p>All fruit, all dressed, apple juice</p>
             <h5>$5,99</h5>
             <Button>ADD TO CART</Button>
           </Content>
         </ProductCard>
-      </ProductSecondRow>
+      </ProductsGrid>
     </ProductsContainer>
   );
 }
@@ -89,17 +97,20 @@ function Products() {
 export default Products;
 
 const ProductsContainer = styled.div`
+  padding: 2rem 0;
   background: url(${menu});
   width: 100%;
-  height: 120vh;
-  object-fit: contain;
+  height: 130vh;
   background-size: cover;
   background-position: center;
   @media screen and (max-width: 1200px) {
     height: 100vh;
   }
   @media screen and (max-width: 1050px) {
-    height: 150vh;
+    height: 100%;
+  }
+  @media screen and (max-width: 768px) {
+    background: url(${phonebg});
   }
 `;
 const ProductCard = styled.div`
@@ -112,12 +123,38 @@ const ProductCard = styled.div`
       max-width: 200px;
     }
   }
+  .chocolate {
+    max-width: 230px;
+    padding-bottom: 20px;
+    @media screen and (max-width: 1200px) {
+      max-width: 160px;
+      padding-bottom: 5px;
+    }
+  }
+  .special {
+    max-width: 215px;
+    @media screen and (max-width: 1200px) {
+      max-width: 145px;
+    }
+  }
 `;
 const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  h3 {
+    font-size: clamp(1rem, 1.5vw, 3rem);
+    color: #fa4e5c;
+    font-weight: 500;
+    text-shadow: 0.3px 0.4px #fff;
+  }
+  h5 {
+    font-size: clamp(1rem, 2vw, 3rem);
+  }
+  p {
+    font-size: clamp(1rem, 0.5vw, 3rem);
+  }
   button {
     margin-top: 1rem;
     color: #fff;
@@ -130,15 +167,29 @@ const Content = styled.div`
     }
   }
 `;
-const ProductFirstRow = styled.div`
-  display: flex;
-  justify-content: center;
+// const ProductFirstRow = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   @media screen and (max-width: 1050px) {
+//     display: grid;
+//     grid-template-columns: repeat(3, 1fr);
+//   }
+// `;
+// const ProductSecondRow = styled.div`
+//   display: flex;
+//   justify-content: center;
+// `;
+const ProductsGrid = styled.div`
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   @media screen and (max-width: 1050px) {
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
-`;
-const ProductSecondRow = styled.div`
-  display: flex;
-  justify-content: center;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: 500px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
