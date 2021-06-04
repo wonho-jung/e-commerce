@@ -13,6 +13,7 @@ function Cart() {
     <CartContainer>
       {shoppingCart.map((item, index) => (
         <CartProducts
+          index={index}
           key={index}
           img={item.basket.img}
           alt={item.basket.alt}

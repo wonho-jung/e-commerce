@@ -7,7 +7,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ClearIcon from "@material-ui/icons/Clear";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { login, selectUser } from "../features/userSlice";
+import { login, selectAddToCart, selectUser } from "../features/userSlice";
 import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
 function Header() {
@@ -21,6 +21,8 @@ function Header() {
     auth.signOut();
     dispatch(login({ user: null }));
   };
+  const shoppingCart = useSelector(selectAddToCart);
+  console.log(shoppingCart.length);
   return (
     <HeaderContainer>
       <NavImg>
@@ -35,11 +37,16 @@ function Header() {
       </MobileNavItme>
 
       <MobileNav className={clicked ? "nav-menu active" : "nav-menu"}>
-        <Link to="/cart" style={{ padding: "0", border: "none" }}>
+        <Link
+          className="shoppingHover"
+          to="/cart"
+          style={{ padding: "0", border: "none" }}
+        >
           <ShoppingCartOutlinedIcon
             className="shoppingCart"
             style={{ paddingRight: "20px" }}
           />
+          <span className="ProductNum">{shoppingCart.length}</span>
         </Link>
 
         <SignInContent>
@@ -67,6 +74,7 @@ function Header() {
         <NavLink href="/#about">About</NavLink>
         <NavLink href="/#contact">Contact</NavLink>
       </MobileNav>
+
       <NavItem>
         <NavLink href="/#home">Home</NavLink>
         <NavLink>
@@ -75,10 +83,10 @@ function Header() {
         <NavLink href="/#about">About</NavLink>
 
         <NavLink href="/#contact">Contact</NavLink>
-        <NavLink>
+        <NavLink className="shoppingCartDesktop">
           <Link to="/cart">
-            {" "}
             <ShoppingCartOutlinedIcon />
+            <span>{shoppingCart.length}</span>
           </Link>
         </NavLink>
 
@@ -185,6 +193,14 @@ const NavItem = styled.div`
   @media screen and (max-width: 768px) {
     display: none;
   }
+  .shoppingCartDesktop {
+    position: relative;
+    span {
+      position: absolute;
+      top: -15px;
+      left: 8px;
+    }
+  }
 `;
 const NavLink = styled.a`
   text-decoration: none;
@@ -223,7 +239,12 @@ const MobileNavItme = styled.div`
 const MobileNav = styled.div`
   display: none;
   position: relative;
-
+  .shoppingHover {
+    color: #fff;
+    :hover {
+      color: #fcbc03 !important;
+    }
+  }
   @media screen and (max-width: 768px) {
     display: block;
     z-index: 100;
@@ -251,6 +272,15 @@ const MobileNav = styled.div`
     left: 40px;
     color: #fff;
     border: none;
+    :hover {
+      color: #fcbc03;
+    }
+  }
+  .ProductNum {
+    position: absolute;
+    top: 6px;
+    left: 47px;
+    color: #fff;
     :hover {
       color: #fcbc03;
     }
