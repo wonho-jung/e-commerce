@@ -12,12 +12,70 @@ import bananaSmt from "../../assets/bananaSmt.png";
 import strwberrySmt from "../../assets/strwberrySmt.png";
 import choSmt from "../../assets/choSmt.png";
 import special from "../../assets/special.png";
+import { productData } from "./data";
+import { useDispatch } from "react-redux";
+import { addToCart, selectAddToCart } from "../../features/userSlice";
+import { useSelector } from "react-redux";
+import ProductCard from "./ProductCard";
 
 function Products() {
+  const dispatch = useDispatch();
+  console.log(productData);
+  const cart = useSelector(selectAddToCart);
+  console.log(cart);
+
+  const handleAdd = (item, index) => {
+    //   addToCart({
+    //     basket: {
+    //       img: item.img,
+    //     },
+    //   })
+    // );
+  };
   return (
     <ProductsContainer>
       <ProductsGrid>
-        <ProductCard>
+        {productData.map((item, index) => (
+          <ProductCard
+            key={index}
+            img={item.img}
+            alt={item.alt}
+            name={item.name}
+            desc={item.desc}
+            price={item.price}
+            special={item.special}
+            chocolate={item.chocolate}
+          />
+        ))}
+        {/* {productData.map((item, index) => (
+          <ProductCard key={index}>
+            <img
+              className={
+                item.chocolate || (item.special && item.chocolate)
+                  ? item.chocolate
+                  : item.special
+              }
+              src={item.img}
+              alt={item.alt}
+            />
+            <Content>
+              <h3>{item.name}</h3>
+              <p>{item.desc}</p>
+              <h5>{item.price}</h5>
+              <Button onClick={handleAdd(item)}>ADD TO CART</Button>
+            </Content>
+          </ProductCard>
+        ))} */}
+        {/* <ProductCard>
+          <img className={handleClass} src={img} alt={alt} />
+          <Content>
+            <h3>{name}</h3>
+            <p>{desc}</p>
+            <h5>{price}</h5>
+            <Button>ADD TO CART</Button>
+          </Content>
+        </ProductCard> */}
+        {/* <ProductCard>
           <img src={avocado} alt="" />
           <Content>
             <h3>Avocado Shake</h3>
@@ -88,7 +146,7 @@ function Products() {
             <h5>$5,99</h5>
             <Button>ADD TO CART</Button>
           </Content>
-        </ProductCard>
+        </ProductCard> */}
       </ProductsGrid>
     </ProductsContainer>
   );
@@ -113,60 +171,60 @@ const ProductsContainer = styled.div`
     background: url(${phonebg});
   }
 `;
-const ProductCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  img {
-    max-width: 300px;
-    @media screen and (max-width: 1200px) {
-      max-width: 200px;
-    }
-  }
-  .chocolate {
-    max-width: 230px;
-    padding-bottom: 20px;
-    @media screen and (max-width: 1200px) {
-      max-width: 160px;
-      padding-bottom: 5px;
-    }
-  }
-  .special {
-    max-width: 215px;
-    @media screen and (max-width: 1200px) {
-      max-width: 145px;
-    }
-  }
-`;
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  h3 {
-    font-size: clamp(1rem, 1.5vw, 3rem);
-    color: #fa4e5c;
-    font-weight: 500;
-    text-shadow: 0.3px 0.4px #fff;
-  }
-  h5 {
-    font-size: clamp(1rem, 2vw, 3rem);
-  }
-  p {
-    font-size: clamp(1rem, 0.5vw, 3rem);
-  }
-  button {
-    margin-top: 1rem;
-    color: #fff;
-    border-radius: 20px;
-    padding: 10px;
-    background: #fa4e5c;
-    :hover {
-      color: #fa4e5c;
-      border: 1px solid #fa4e5c;
-    }
-  }
-`;
+// const ProductCard = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   img {
+//     max-width: 300px;
+//     @media screen and (max-width: 1200px) {
+//       max-width: 200px;
+//     }
+//   }
+//   .chocolate {
+//     max-width: 230px;
+//     padding-bottom: 20px;
+//     @media screen and (max-width: 1200px) {
+//       max-width: 160px;
+//       padding-bottom: 5px;
+//     }
+//   }
+//   .special {
+//     max-width: 215px;
+//     @media screen and (max-width: 1200px) {
+//       max-width: 145px;
+//     }
+//   }
+// `;
+// const Content = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   h3 {
+//     font-size: clamp(1rem, 1.5vw, 3rem);
+//     color: #fa4e5c;
+//     font-weight: 500;
+//     text-shadow: 0.3px 0.4px #fff;
+//   }
+//   h5 {
+//     font-size: clamp(1rem, 2vw, 3rem);
+//   }
+//   p {
+//     font-size: clamp(1rem, 0.5vw, 3rem);
+//   }
+//   button {
+//     margin-top: 1rem;
+//     color: #fff;
+//     border-radius: 20px;
+//     padding: 10px;
+//     background: #fa4e5c;
+//     :hover {
+//       color: #fa4e5c;
+//       border: 1px solid #fa4e5c;
+//     }
+//   }
+// `;
 // const ProductFirstRow = styled.div`
 //   display: flex;
 //   justify-content: center;

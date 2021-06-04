@@ -5,12 +5,13 @@ import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import { Button } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import ClearIcon from "@material-ui/icons/Clear";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { login, selectUser } from "../features/userSlice";
 import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
 function Header() {
+  const history = useHistory();
   const user = useSelector(selectUser);
   const [clicked, setClicked] = useState(false);
   console.log(user?.user);
@@ -34,16 +35,19 @@ function Header() {
       </MobileNavItme>
 
       <MobileNav className={clicked ? "nav-menu active" : "nav-menu"}>
-        <ShoppingCartOutlinedIcon
-          className="shoppingCart"
-          style={{ paddingRight: "20px" }}
-        />
+        <Link to="/cart" style={{ padding: "0", border: "none" }}>
+          <ShoppingCartOutlinedIcon
+            className="shoppingCart"
+            style={{ paddingRight: "20px" }}
+          />
+        </Link>
+
         <SignInContent>
           <p>
             Hello! <span>{user ? user.user : "guest"}</span>
           </p>
           {user ? (
-            <Link to="/login">
+            <Link>
               <Button className="mobileBtn" onClick={signOut}>
                 Sign Out
               </Button>
@@ -55,7 +59,7 @@ function Header() {
           )}
         </SignInContent>
 
-        <NavLink href="/#home">Home</NavLink>
+        <NavLink href="/#products">Home</NavLink>
         <NavLink>
           <Link to="/products">Products</Link>
         </NavLink>
@@ -72,7 +76,10 @@ function Header() {
 
         <NavLink href="/#contact">Contact</NavLink>
         <NavLink>
-          <ShoppingCartOutlinedIcon />
+          <Link to="/cart">
+            {" "}
+            <ShoppingCartOutlinedIcon />
+          </Link>
         </NavLink>
 
         <SignInContent>
@@ -85,7 +92,7 @@ function Header() {
             </span>
           </p>
           {user ? (
-            <Link to="/login">
+            <Link>
               <Button className="desktopBtn" onClick={signOut}>
                 Sign Out
               </Button>
@@ -230,17 +237,20 @@ const MobileNav = styled.div`
     text-decoration: none;
 
     :hover {
-      color: #fa4e5c;
+      color: #fcbc03;
     }
     a {
       padding: 0;
       border: none;
     }
   }
+
   .shoppingCart {
     position: absolute;
     top: 27px;
     left: 40px;
+    color: #fff;
+    border: none;
     :hover {
       color: #fcbc03;
     }

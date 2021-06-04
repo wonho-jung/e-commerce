@@ -15,6 +15,8 @@ import { auth } from "./components/firebase";
 import { login, logout } from "./features/userSlice";
 import Products from "./components/Products/Products";
 import ProductsHero from "./components/Products/ProductsHero";
+import Cart from "./components/Cart/Cart";
+import CartHero from "./components/Cart/CartHero";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +39,12 @@ function App() {
       <Router>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/cart">
+          <Header />
+          <CartHero />
+          <Cart />
+          <Contact />
         </Route>
         <Route path="/products">
           <Header />

@@ -116,9 +116,10 @@ const BannerCenter = styled.div`
   img {
     max-width: 70%;
   }
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
+  //   @media screen and (max-width: 1050px) {
+  //     display: grid;
+  //     grid-template-columns: repeat(3, 1fr);
+  //   }
 `;
 const BannerRight = styled.div`
   display: flex;
