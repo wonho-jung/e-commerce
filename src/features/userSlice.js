@@ -11,18 +11,27 @@ export const userSlice = createSlice({
       state.user = null;
     },
     addToCart: (state, action) => {
+      console.log(action);
+      console.log(state);
       state.basket = [...state.basket, action.payload];
     },
     removeFromCart: (state, action) => {
-      let newBasket = state.basket.filter((item, i) => i !== action.paylod.idx);
+      console.log(state);
+      console.log(action.payload.idx);
+      let newBasket = state.basket.filter(
+        (item, i) => i !== action.payload.idx
+      );
       return { basket: newBasket };
     },
   },
 });
 
+export const getBasketTotal = (basket) =>
+  basket?.reduce((amount, item) => item.price + amount, 0);
 export const { login, logout, addToCart, removeFromCart } = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 export const selectAddToCart = (state) => state.user.basket;
+export const selectRemoveFromCart = (state) => state.user;
 
 export default userSlice.reducer;

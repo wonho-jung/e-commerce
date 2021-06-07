@@ -1,13 +1,14 @@
 import { Button } from "@material-ui/core";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { removeFromCart } from "../../features/userSlice";
+import { removeFromCart, selectRemoveFromCart } from "../../features/userSlice";
 
 function CartProducts({ index, key, img, alt, name, desc, price }) {
+  const test = useSelector(selectRemoveFromCart);
   const dispatch = useDispatch();
   const removeFromBasket = () => {
-    dispatch(removeFromCart(index));
+    dispatch(removeFromCart({ idx: index }));
   };
 
   return (
