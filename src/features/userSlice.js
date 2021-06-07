@@ -27,7 +27,7 @@ export const userSlice = createSlice({
 });
 
 export const getBasketTotal = (basket) =>
-  basket?.reduce((amount, item) => item.price + amount, 0);
+  basket?.reduce((amount, item) => item.basket.price + amount, 0);
 export const { login, logout, addToCart, removeFromCart } = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;

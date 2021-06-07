@@ -18,7 +18,7 @@ function CartProducts({ index, key, img, alt, name, desc, price }) {
       <Content>
         <h3>{name}</h3>
         <p>{desc}</p>
-        <h5>{price}</h5>
+        <h5>${price}</h5>
         <Button onClick={removeFromBasket}>Remove from Cart</Button>
       </Content>
     </CartProductsContainer>

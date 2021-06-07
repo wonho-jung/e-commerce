@@ -4,7 +4,7 @@ import fapple from "../../assets/fapple.mp4";
 import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
 import { auth, provider } from "../firebase";
-
+import logo from "../../assets/logo.png";
 function Login() {
   const history = useHistory();
   const [email, setEmail] = useState("");
@@ -55,6 +55,9 @@ function Login() {
         <video src={fapple} type="video/mp4" autoPlay loop muted playsInline />
       </LoginBg>
       <LoginContentBox>
+        <Link to="/">
+          <img src={logo} alt="logo" />
+        </Link>
         <h1>Sign in</h1>
         <form>
           <input
@@ -126,11 +129,19 @@ const LoginContentBox = styled.div`
     0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
+  img {
+    cursor: pointer;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
   form {
     display: grid;
     flex-direction: column;
   }
   h1 {
+    margin-top: 10px;
     text-align: left;
     margin-bottom: 25px;
   }

@@ -1,21 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import fapple from "../../assets/products3.jpg";
+import profile from "../../assets/profile.jpg";
 import AOS from "aos";
 import "aos/dist/aos.css";
-function ProductsHero() {
+function ProfileHero() {
   AOS.init();
   return (
     <HeroContainer id="home">
       <HeroBg>
-        <img src={fapple} />
+        <img src={profile} />
       </HeroBg>
       <HeroContent>
         <HeroItemsTitle>
           <p>
-            <span className="pink">OUR PR</span>
-            <span className="o">O</span>
-            <span className="skygreen">DUCTS</span>
+            <span className="pink"> My AC</span>
+            <span className="o">C</span>
+            <span className="skygreen">OUNT</span>
           </p>
         </HeroItemsTitle>
       </HeroContent>
@@ -23,7 +23,7 @@ function ProductsHero() {
   );
 }
 
-export default ProductsHero;
+export default ProfileHero;
 const HeroContainer = styled.div`
   margin-top: -80px;
 
@@ -89,13 +89,13 @@ const HeroItemsTitle = styled.div`
     font-size: clamp(1rem, 3vw, 3rem);
     margin-bottom: 1rem;
     .pink {
-      color: #ffa3bc;
+      color: #fff;
     }
     .skygreen {
-      color: #45c2c7;
+      color: #ffc51c;
     }
     .o {
-      background-image: linear-gradient(90deg, #ffa3bc, #45c2c7);
+      background-image: linear-gradient(90deg, #fff, #ffc51c);
 
       background-size: 100%;
       background-repeat: cover;

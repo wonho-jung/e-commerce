@@ -156,7 +156,7 @@ export default Products;
 
 const ProductsContainer = styled.div`
   padding: 2rem 0;
-  background: url(${menu});
+  background: url(${phonebg});
   width: 100%;
   height: 130vh;
   background-size: cover;

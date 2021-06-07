@@ -12,7 +12,11 @@ function CartHero() {
       </HeroBg>
       <HeroContent>
         <HeroItemsTitle>
-          <p>Your shopping Basket</p>
+          <p>
+            <span className="pink">Your shop</span>
+            <span className="p">p</span>
+            <span className="white">ing Basket</span>
+          </p>
         </HeroItemsTitle>
       </HeroContent>
     </HeroContainer>
@@ -81,6 +85,20 @@ const HeroItemsTitle = styled.div`
     max-width: 100%;
   }
   p {
+    .pink {
+      color: #ffa9ba;
+    }
+    .p {
+      background-image: linear-gradient(90deg, #ffa9ba, #fff);
+
+      background-size: 100%;
+      background-repeat: cover;
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -moz-background-clip: text;
+      -moz-text-fill-color: transparent;
+    }
     text-transform: uppercase;
     font-size: clamp(1rem, 3vw, 3rem);
     margin-bottom: 1rem;

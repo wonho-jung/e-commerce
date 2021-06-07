@@ -34,7 +34,7 @@ function ProductCard({ key, img, alt, name, desc, price, special, chocolate }) {
       <Content>
         <h3>{name}</h3>
         <p>{desc}</p>
-        <h5>{price}</h5>
+        <h5>${price}</h5>
         <Button onClick={handleAdd}>ADD TO CART</Button>
       </Content>
     </ProductCardContainer>

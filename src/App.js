@@ -17,6 +17,8 @@ import Products from "./components/Products/Products";
 import ProductsHero from "./components/Products/ProductsHero";
 import Cart from "./components/Cart/Cart";
 import CartHero from "./components/Cart/CartHero";
+import ProfileHero from "./components/Profile/ProfileHero";
+import Profile from "./components/Profile/Profile";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +28,11 @@ function App() {
         dispatch(
           login({
             user: authUser.email,
+            displayname: authUser.displayName
+              ? authUser.displayName
+              : authUser.email.substring(0, authUser.email.indexOf("@")),
+            photoURL: authUser.photoURL,
+            uid: authUser.uid,
           })
         );
       } else {
@@ -40,6 +47,13 @@ function App() {
         <Route path="/login">
           <Login />
         </Route>
+        <Route path="/profile">
+          <Header />
+          <ProfileHero />
+          <Profile />
+          <Contact />
+        </Route>
+
         <Route path="/cart">
           <Header />
           <CartHero />

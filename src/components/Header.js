@@ -19,6 +19,7 @@ function Header() {
   const dispatch = useDispatch();
   const signOut = () => {
     auth.signOut();
+    history.push("/login");
     dispatch(login({ user: null }));
   };
   const shoppingCart = useSelector(selectAddToCart);
@@ -66,23 +67,30 @@ function Header() {
           )}
         </SignInContent>
 
-        <NavLink href="/#products">Home</NavLink>
+        <NavLink href="/#products">
+          {" "}
+          <Link to="/">Home</Link>
+        </NavLink>
         <NavLink>
           <Link to="/products">Products</Link>
         </NavLink>
-
-        <NavLink href="/#about">About</NavLink>
-        <NavLink href="/#contact">Contact</NavLink>
+        <NavLink>
+          <Link to="/profile">Account&Orders</Link>
+        </NavLink>
       </MobileNav>
 
       <NavItem>
-        <NavLink href="/#home">Home</NavLink>
+        <NavLink>
+          {" "}
+          <Link to="/">Home</Link>
+        </NavLink>
         <NavLink>
           <Link to="/products">Products</Link>
         </NavLink>
-        <NavLink href="/#about">About</NavLink>
+        <NavLink>
+          <Link to="/profile">Account&Orders</Link>
+        </NavLink>
 
-        <NavLink href="/#contact">Contact</NavLink>
         <NavLink className="shoppingCartDesktop">
           <Link to="/cart">
             <ShoppingCartOutlinedIcon />

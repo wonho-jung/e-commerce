@@ -6,12 +6,19 @@ import PlacesAutocomplete, {
 } from "react-places-autocomplete";
 import { useState } from "react";
 import { Button } from "@material-ui/core";
-
+import {
+  getBasketTotal,
+  selectAddToCart,
+  selectUser,
+} from "../../features/userSlice";
+import { useSelector } from "react-redux";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 function CartTotal() {
+  const user = useSelector(selectUser);
   const [address, setAddress] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [name, setName] = useState("");
-
+  const carts = useSelector(selectAddToCart);
   const handleChange = (address) => {
     setAddress(address);
   };
@@ -21,6 +28,18 @@ function CartTotal() {
       .then((latLng) => console.log("Success", latLng))
       .catch((error) => console.error("Error", error));
     setAddress(address);
+  };
+  console.log(name);
+  const saveInfo = () => {
+    if (user) {
+      if (address && postalCode && name) {
+        alert("test");
+      } else {
+        alert("Please fill up everything...");
+      }
+    } else {
+      alert("You need to login first...");
+    }
   };
   return (
     <CartTotalContainer>
@@ -61,11 +80,12 @@ function CartTotal() {
                         : { backgroundColor: "#ffffff", cursor: "pointer" };
                       return (
                         <div
+                          className="input-suggestion"
                           {...getSuggestionItemProps(suggestion, {
-                            className,
                             style,
                           })}
                         >
+                          <LocationOnIcon />
                           <span>{suggestion.description}</span>
                         </div>
                       );
@@ -89,18 +109,35 @@ function CartTotal() {
               onChange={(e) => setName(e.target.value)}
               placeholder="Enter your name ..."
             />
+            <br />
+            <Button className="save" onClick={saveInfo}>
+              Save as my address
+            </Button>
           </AddressContent>
         </FirstRow>
 
         <SecondRow>
-          {" "}
-          <h3>
-            Subtotal( <span>0</span> item)
-          </h3>
-          <p>$59,99</p>
+          <div>
+            <h3>
+              Subtotal( <span>{carts.length}</span> item)
+            </h3>
+            <h3>Tax </h3>
+            <h3>Total</h3>
+          </div>
+          <div>
+            <p>${getBasketTotal(carts).toFixed(2)}</p>
+            <p>${(getBasketTotal(carts) * 0.15).toFixed(2)}</p>
+            <p>
+              $
+              {(
+                parseFloat(getBasketTotal(carts).toFixed(2)) +
+                parseFloat((getBasketTotal(carts) * 0.15).toFixed(2))
+              ).toFixed(2)}
+            </p>
+          </div>
         </SecondRow>
         <ThirdRow>
-          <Button>PROCEED TO CHECKOUT</Button>
+          <Button className="check-out">PROCEED TO CHECKOUT</Button>
         </ThirdRow>
       </SubtotalBox>
     </CartTotalContainer>
@@ -114,7 +151,21 @@ const CartTotalContainer = styled.div`
   margin: 2rem 0;
   border-top: 1px solid #fa4e5c;
   border-bottom: 1px solid #fa4e5c;
-  button {
+  .save {
+    display: flex;
+    margin: 0 auto;
+    color: #fff;
+    margin-top: 10px;
+    font-size: 9px;
+    border-radius: 20px;
+    padding: 5px;
+    background: #fa4e5c;
+    :hover {
+      color: #fa4e5c;
+      border: 1px solid #fa4e5c;
+    }
+  }
+  .check-out {
     color: #fff;
     border-radius: 20px;
     padding: 10px;
@@ -145,9 +196,16 @@ const FirstRow = styled.div`
     outline-width: 0;
     border: none;
     border-radius: 5px;
+    font-size: 0.7rem;
   }
   p {
     font-size: 0.7rem;
+  }
+  .input-suggestion {
+    display: flex;
+    align-items: center;
+    font-size: 0.7rem;
+    border-bottom: 1px solid #000000;
   }
 `;
 const SecondRow = styled.div`
