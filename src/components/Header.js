@@ -74,9 +74,11 @@ function Header() {
         <NavLink>
           <Link to="/products">Products</Link>
         </NavLink>
-        <NavLink>
-          <Link to="/profile">Account&Orders</Link>
-        </NavLink>
+        {user && (
+          <NavLink>
+            <Link to="/profile">Account&Orders</Link>
+          </NavLink>
+        )}
       </MobileNav>
 
       <NavItem>
@@ -87,9 +89,11 @@ function Header() {
         <NavLink>
           <Link to="/products">Products</Link>
         </NavLink>
-        <NavLink>
-          <Link to="/profile">Account&Orders</Link>
-        </NavLink>
+        {user && (
+          <NavLink>
+            <Link to="/profile">Account&Orders</Link>
+          </NavLink>
+        )}
 
         <NavLink className="shoppingCartDesktop">
           <Link to="/cart">

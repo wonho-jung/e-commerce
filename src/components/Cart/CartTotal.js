@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -11,14 +11,26 @@ import {
   selectAddToCart,
   selectUser,
 } from "../../features/userSlice";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
+import db from "../firebase";
 function CartTotal() {
   const user = useSelector(selectUser);
+  const carts = useSelector(selectAddToCart);
   const [address, setAddress] = useState("");
   const [postalCode, setPostalCode] = useState("");
-  const [name, setName] = useState("");
-  const carts = useSelector(selectAddToCart);
+  useEffect(() => {
+    if (user) {
+      db.collection("users")
+        .doc(user.uid)
+        .collection("userInfo")
+        .onSnapshot((snapshot) => {
+          setAddress(snapshot.docs.map((doc) => doc.data().userAddress));
+          setPostalCode(snapshot.docs.map((doc) => doc.data().userPostalCode));
+        });
+    }
+  }, [user]);
+
   const handleChange = (address) => {
     setAddress(address);
   };
@@ -29,11 +41,18 @@ function CartTotal() {
       .catch((error) => console.error("Error", error));
     setAddress(address);
   };
-  console.log(name);
   const saveInfo = () => {
     if (user) {
-      if (address && postalCode && name) {
-        alert("test");
+      if (address && postalCode) {
+        db.collection("users")
+          .doc(user.uid)
+          .collection("userInfo")
+          .doc(user.uid)
+          .set({
+            userAddress: address,
+            userPostalCode: postalCode,
+          });
+        alert("Thank you. You can check your address in Account&Order page.");
       } else {
         alert("Please fill up everything...");
       }
@@ -102,13 +121,7 @@ function CartTotal() {
               onChange={(e) => setPostalCode(e.target.value)}
               placeholder="Enter a postal code ..."
             />
-            <p>Full name (First and Last name)</p>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your name ..."
-            />
+
             <br />
             <Button className="save" onClick={saveInfo}>
               Save as my address
