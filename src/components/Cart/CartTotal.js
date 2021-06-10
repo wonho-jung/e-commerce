@@ -14,7 +14,9 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import db from "../firebase";
+import { useHistory } from "react-router";
 function CartTotal() {
+  const history = useHistory();
   const user = useSelector(selectUser);
   const carts = useSelector(selectAddToCart);
   const [address, setAddress] = useState("");
@@ -59,6 +61,21 @@ function CartTotal() {
     } else {
       alert("You need to login first...");
     }
+  };
+  const handleCheckOut = () => {
+    if (user) {
+      if (address && postalCode) {
+        db.collection("users")
+          .doc(user.uid)
+          .collection("delivery")
+          .doc(user.uid)
+          .set({
+            userAddress: address,
+            userPostalCode: postalCode,
+          });
+      }
+    }
+    history.push("/payment");
   };
   return (
     <CartTotalContainer>
@@ -150,7 +167,9 @@ function CartTotal() {
           </div>
         </SecondRow>
         <ThirdRow>
-          <Button className="check-out">PROCEED TO CHECKOUT</Button>
+          <Button className="check-out" onClick={handleCheckOut}>
+            PROCEED TO CHECKOUT
+          </Button>
         </ThirdRow>
       </SubtotalBox>
     </CartTotalContainer>

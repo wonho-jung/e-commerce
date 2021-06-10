@@ -19,7 +19,13 @@ import Cart from "./components/Cart/Cart";
 import CartHero from "./components/Cart/CartHero";
 import ProfileHero from "./components/Profile/ProfileHero";
 import Profile from "./components/Profile/Profile";
-
+import Payment from "./components/Payment/Payment";
+import PaymentHero from "./components/Payment/PaymentHero";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+const promise = loadStripe(
+  "pk_test_51J0Y5OC0qDibsqWE30Bkt9Q1R97hmGDOJsJ51iSPTTodk2SbW5jUJaOb4JosQ70ZinGFGrOMx9CxclIoToGDO26f00w9JN1wAQ"
+);
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -46,6 +52,13 @@ function App() {
       <Router>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/payment">
+          <Header />
+          <PaymentHero />
+          <Elements stripe={promise}>
+            <Payment />
+          </Elements>
         </Route>
         <Route path="/profile">
           <Header />
