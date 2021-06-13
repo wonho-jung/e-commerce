@@ -35,7 +35,7 @@ export const userSlice = createSlice({
     emptyCart: (state) => {
       state.basket = [];
     },
-    address: (state, action) => {
+    deliveryAddress: (state, action) => {
       state.address = action.payload;
     },
     totalcost: (state, action) => {
@@ -51,7 +51,7 @@ export const {
   logout,
   addToCart,
   removeFromCart,
-  address,
+  deliveryAddress,
   totalcost,
   emptyCart,
 } = userSlice.actions;
@@ -59,7 +59,7 @@ export const {
 export const selectUser = (state) => state.user.user;
 export const selectAddToCart = (state) => state.user.basket;
 export const selectRemoveFromCart = (state) => state.user;
-export const selectAddress = (state) => state.user.address;
+export const selectdeliveryAddress = (state) => state.user.address;
 export const selectTotalCost = (state) => state.user.cost;
 
 export default userSlice.reducer;

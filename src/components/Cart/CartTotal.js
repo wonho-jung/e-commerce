@@ -67,14 +67,14 @@ function CartTotal() {
   const handleCheckOut = () => {
     if (user) {
       if (address && postalCode) {
-        db.collection("users")
-          .doc(user.uid)
-          .collection("delivery")
-          .doc(user.uid)
-          .set({
-            userAddress: address,
-            userPostalCode: postalCode,
-          });
+        // db.collection("users")
+        //   .doc(user.uid)
+        //   .collection("delivery")
+        //   .doc(user.uid)
+        //   .set({
+        //     userAddress: address,
+        //     userPostalCode: postalCode,
+        //   });
       }
     }
     history.push("/payment");

@@ -134,8 +134,7 @@ const ProfileContainer = styled.div`
   box-sizing: border-box;
   background: url(${bg});
   width: 100%;
-  height: 100vh;
-  display: flex;
+  height: 100%;
 `;
 const Update = styled.div`
   margin-top: 1rem;
@@ -161,14 +160,14 @@ const Update = styled.div`
 `;
 const Profilescontent = styled.div`
   background: #f6f5dd;
-  flex: 0.2;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem;
   padding-top: 100px;
 
-  border-right: 3px solid #fa4e5c;
+  border-bottom: 3px solid #fa4e5c;
 
   h5 {
     line-height: 1.5rem;
@@ -192,9 +191,7 @@ const Profilescontent = styled.div`
 `;
 const InfoBox = styled.div``;
 const Orderhistory = styled.div`
-  flex: 0.8;
-
-  padding: 2rem;
+  padding: 2rem 20%;
   h1 {
     color: #fa4e5c;
   }
