@@ -5,13 +5,32 @@ import styled from "styled-components";
 import { selectUser } from "../../features/userSlice";
 import bg from "../../assets/phonebg.jpg";
 import db from "../firebase";
+import Orderlist from "./Orderlist";
 function Profile() {
   const [address, setAddress] = useState("");
   const [update, setUpdate] = useState(false);
   const [inputAddress, setInputAddress] = useState("");
   const [inputPostal, setInputPostal] = useState("");
+  const [orderList, setOrderList] = useState([]);
   const user = useSelector(selectUser);
   console.log(user);
+  useEffect(() => {
+    if (user) {
+      db.collection("payment")
+        .doc(user?.uid)
+        .collection("orders")
+        .orderBy("created", "desc")
+        .onSnapshot((snapshot) =>
+          setOrderList(
+            snapshot.docs.map((doc) => ({
+              id: doc.id,
+              data: doc.data(),
+            }))
+          )
+        );
+    }
+  }, [user]);
+  console.log(orderList);
 
   const updateAddress = () => {
     setUpdate(true);
@@ -100,6 +119,11 @@ function Profile() {
       </Profilescontent>
       <Orderhistory>
         <h1>Order history</h1>
+        <OrderContainer>
+          {orderList.map((order) => (
+            <Orderlist order={order} />
+          ))}
+        </OrderContainer>
       </Orderhistory>
     </ProfileContainer>
   );
@@ -175,3 +199,5 @@ const Orderhistory = styled.div`
     color: #fa4e5c;
   }
 `;
+const OrderContainer = styled.div``;
+const Orderbox = styled.div``;

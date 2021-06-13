@@ -23,7 +23,7 @@ function Products() {
   console.log(productData);
   const cart = useSelector(selectAddToCart);
   console.log(cart);
-
+  console.log(cart);
   const handleAdd = (item, index) => {
     //   addToCart({
     //     basket: {
@@ -43,8 +43,8 @@ function Products() {
             name={item.name}
             desc={item.desc}
             price={item.price}
-            special={item.special}
-            chocolate={item.chocolate}
+            special={item.special ? item.special : false}
+            chocolate={item.chocolate ? item.chocolate : false}
           />
         ))}
         {/* {productData.map((item, index) => (

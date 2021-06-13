@@ -8,20 +8,20 @@ import CartTotal from "./CartTotal";
 function Cart() {
   const dispatch = useDispatch();
   const shoppingCart = useSelector(selectAddToCart);
-  console.log(shoppingCart);
+  console.log(typeof shoppingCart);
   return (
     <CartContainer>
       {shoppingCart.map((item, index) => (
         <CartProducts
           index={index}
           key={index}
-          img={item.basket.img}
-          alt={item.basket.alt}
-          name={item.basket.name}
-          desc={item.basket.desc}
-          price={item.basket.price}
-          special={item.basket.special}
-          chocolate={item.basket.chocolate}
+          img={item.img}
+          alt={item.alt}
+          name={item.name}
+          desc={item.desc}
+          price={item.price}
+          special={item.special}
+          chocolate={item.chocolate}
         />
       ))}
       <CartTotal />

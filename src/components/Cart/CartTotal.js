@@ -21,11 +21,13 @@ function CartTotal() {
   const carts = useSelector(selectAddToCart);
   const [address, setAddress] = useState("");
   const [postalCode, setPostalCode] = useState("");
+  console.log(carts);
   useEffect(() => {
     if (user) {
       db.collection("users")
         .doc(user.uid)
         .collection("userInfo")
+
         .onSnapshot((snapshot) => {
           setAddress(snapshot.docs.map((doc) => doc.data().userAddress));
           setPostalCode(snapshot.docs.map((doc) => doc.data().userPostalCode));

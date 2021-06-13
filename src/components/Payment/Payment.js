@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
+  emptyCart,
   getBasketTotal,
   selectAddToCart,
   selectUser,
@@ -9,9 +10,10 @@ import {
 import CartProducts from "../Cart/CartProducts";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
-import db from "../firebase";
+
 import axios from "../axios";
 import { useHistory } from "react-router";
+import db from "../firebase";
 
 function Payment() {
   const history = useHistory();
@@ -25,6 +27,8 @@ function Payment() {
   const [processing, setProcessing] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState(true);
+  console.log(user?.uid);
+
   useEffect(() => {
     const getClientSecret = async () => {
       const res = await axios({
@@ -38,7 +42,7 @@ function Payment() {
       });
       setClientSecret(res.data.clientSecret);
     };
-    getClientSecret();
+    getClientSecret(clientSecret);
   }, [shoppingCart]);
 
   const handleSubmit = async (e) => {
@@ -52,12 +56,12 @@ function Payment() {
         },
       })
       .then(({ paymentIntent }) => {
-        db.collection("users")
+        db.collection("payment")
           .doc(user?.uid)
           .collection("orders")
           .doc(paymentIntent.id)
           .set({
-            basket: shoppingCart,
+            shoppinglist: shoppingCart,
             amount: paymentIntent.amount,
             created: paymentIntent.created,
           });
@@ -65,18 +69,16 @@ function Payment() {
         setSucceeded(true);
         setError(null);
         setProcessing(false);
+        dispatch(emptyCart());
 
-        dispatch({
-          type: "EMPTY_BASKET",
-        });
-
-        history.replace("/profile");
+        history.replace("/");
       });
   };
   const handleChange = (e) => {
     setDisabled(e.empty);
     setError(e.error ? e.error.message : "");
   };
+
   return (
     <PaymentContainer>
       <PaymentAddress>
@@ -95,13 +97,13 @@ function Payment() {
             <CartProducts
               index={index}
               key={index}
-              img={item.basket.img}
-              alt={item.basket.alt}
-              name={item.basket.name}
-              desc={item.basket.desc}
-              price={item.basket.price}
-              special={item.basket.special}
-              chocolate={item.basket.chocolate}
+              img={item.img}
+              alt={item.alt}
+              name={item.name}
+              desc={item.desc}
+              price={item.price}
+              special={item.special}
+              chocolate={item.chocolate}
             />
           ))}
         </Content>

@@ -17,9 +17,12 @@ export const userSlice = createSlice({
       state.user = null;
     },
     addToCart: (state, action) => {
-      console.log(action);
-      console.log(state);
-      state.basket = [...state.basket, action.payload];
+      console.log(action.payload);
+      console.log(state.basket);
+      return {
+        ...state,
+        basket: [...state.basket, action.payload],
+      };
     },
     removeFromCart: (state, action) => {
       console.log(state);
@@ -27,7 +30,10 @@ export const userSlice = createSlice({
       let newBasket = state.basket.filter(
         (item, i) => i !== action.payload.idx
       );
-      return { basket: newBasket };
+      return { ...state, basket: newBasket };
+    },
+    emptyCart: (state) => {
+      state.basket = [];
     },
     address: (state, action) => {
       state.address = action.payload;
@@ -39,9 +45,16 @@ export const userSlice = createSlice({
 });
 
 export const getBasketTotal = (basket) =>
-  basket?.reduce((amount, item) => item.basket.price + amount, 0);
-export const { login, logout, addToCart, removeFromCart, address, totalcost } =
-  userSlice.actions;
+  basket?.reduce((amount, item) => item.price + amount, 0);
+export const {
+  login,
+  logout,
+  addToCart,
+  removeFromCart,
+  address,
+  totalcost,
+  emptyCart,
+} = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 export const selectAddToCart = (state) => state.user.basket;

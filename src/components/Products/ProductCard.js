@@ -12,15 +12,13 @@ function ProductCard({ key, img, alt, name, desc, price, special, chocolate }) {
   const handleAdd = () => {
     dispatch(
       addToCart({
-        basket: {
-          img: img,
-          alt: alt,
-          name: name,
-          desc: desc,
-          price: price,
-          special: special,
-          chocolate: chocolate,
-        },
+        img: img,
+        alt: alt,
+        name: name,
+        desc: desc,
+        price: price,
+        special: special,
+        chocolate: chocolate,
       })
     );
   };
