@@ -5,6 +5,7 @@ import triangle from "../assets/triangle.png";
 import mix from "../assets/salemixfriut.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Link } from "react-router-dom";
 function Popular() {
   AOS.init();
 
@@ -32,7 +33,15 @@ function Popular() {
             This week we offer 4 different flavours for a special discount
             price. Enjoy it while it lasts!
           </p>
-          <Button>ORDER NOW</Button>
+
+          <Button>
+            <Link
+              style={{ textDecoration: "none", color: "#fff" }}
+              to="/products"
+            >
+              ORDER NOW
+            </Link>
+          </Button>
         </Content>
       </PopularRight>
     </PopularContainer>

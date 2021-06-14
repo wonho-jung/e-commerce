@@ -5,6 +5,7 @@ import crazy from "../assets/crazy.gif";
 import { Button } from "@material-ui/core";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Link } from "react-router-dom";
 function Hero() {
   AOS.init();
   return (
@@ -22,7 +23,12 @@ function Hero() {
             desert e-commerce
           </p>
           <Button data-aos="fade-right" data-aos-duration="3000">
-            SHOP NOW
+            <Link
+              style={{ textDecoration: "none", color: "#fff" }}
+              to="/products"
+            >
+              SHOP NOW
+            </Link>
           </Button>
         </HeroItemsTitle>
       </HeroContent>

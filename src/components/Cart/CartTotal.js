@@ -7,6 +7,7 @@ import PlacesAutocomplete, {
 import { useState } from "react";
 import { Button } from "@material-ui/core";
 import {
+  deliveryAddress,
   getBasketTotal,
   selectAddToCart,
   selectUser,
@@ -16,6 +17,7 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import db from "../firebase";
 import { useHistory } from "react-router";
 function CartTotal() {
+  const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector(selectUser);
   const carts = useSelector(selectAddToCart);
@@ -65,19 +67,12 @@ function CartTotal() {
     }
   };
   const handleCheckOut = () => {
-    if (user) {
-      if (address && postalCode) {
-        // db.collection("users")
-        //   .doc(user.uid)
-        //   .collection("delivery")
-        //   .doc(user.uid)
-        //   .set({
-        //     userAddress: address,
-        //     userPostalCode: postalCode,
-        //   });
-      }
+    if (address && postalCode) {
+      dispatch(deliveryAddress({ address, postalCode }));
+      history.push("/payment");
+    } else {
+      alert("Check your address");
     }
-    history.push("/payment");
   };
   return (
     <CartTotalContainer>

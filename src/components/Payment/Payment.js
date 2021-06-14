@@ -5,6 +5,7 @@ import {
   emptyCart,
   getBasketTotal,
   selectAddToCart,
+  selectdeliveryAddress,
   selectUser,
 } from "../../features/userSlice";
 import CartProducts from "../Cart/CartProducts";
@@ -20,6 +21,7 @@ function Payment() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const shoppingCart = useSelector(selectAddToCart);
+  const deliveryAddress = useSelector(selectdeliveryAddress);
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
@@ -28,6 +30,7 @@ function Payment() {
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState(true);
   console.log(user?.uid);
+  console.log(deliveryAddress);
 
   useEffect(() => {
     const getClientSecret = async () => {
@@ -61,6 +64,7 @@ function Payment() {
           .collection("orders")
           .doc(paymentIntent.id)
           .set({
+            deliveryAddress: deliveryAddress,
             shoppinglist: shoppingCart,
             amount: paymentIntent.amount,
             created: paymentIntent.created,
@@ -70,7 +74,9 @@ function Payment() {
         setError(null);
         setProcessing(false);
         dispatch(emptyCart());
-
+        alert(
+          `Your Order number is ${paymentIntent.id}. If you are member of JuiceLand then you can check your order on account&order`
+        );
         history.replace("/");
       });
   };
@@ -86,7 +92,9 @@ function Payment() {
           {" "}
           <h3>Delivery Address</h3>
         </Title>
-        <Content></Content>
+        <Content>
+          {deliveryAddress?.address}, {deliveryAddress?.postalCode}
+        </Content>
       </PaymentAddress>
       <PaymentProducts>
         <Title>
@@ -104,6 +112,7 @@ function Payment() {
               price={item.price}
               special={item.special}
               chocolate={item.chocolate}
+              disable
             />
           ))}
         </Content>
@@ -111,14 +120,18 @@ function Payment() {
 
       <PaymentCard>
         <Title>
-          <h3>Payment Method</h3>
+          <h3>
+            Payment Method <span>use this card number (4242424242424242)</span>
+          </h3>
         </Title>
         <Content>
           <form onSubmit={handleSubmit}>
             <CardElement onChange={handleChange} />
             <div className="payment__priceContainer">
               <CurrencyFormat
-                renderText={(value) => <h3>Order Total: {value}</h3>}
+                renderText={(value) => (
+                  <h3 style={{ padding: "1rem 0" }}>Order Total: {value}</h3>
+                )}
                 decimalScale={2}
                 value={(
                   parseFloat(getBasketTotal(shoppingCart).toFixed(2)) +
@@ -128,11 +141,11 @@ function Payment() {
                 thousandSeparator={true}
                 prefix={"$"}
               />
-              <button disabled={processing || disabled || succeeded}>
-                <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
-              </button>
             </div>
-            {error && <div>{error}</div>}
+            <button disabled={error || processing || disabled || succeeded}>
+              <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
+            </button>
+            {error && <div style={{ color: "red" }}>{error}</div>}
           </form>
         </Content>
       </PaymentCard>
@@ -146,27 +159,56 @@ const PaymentContainer = styled.div`
   background-color: #fbdbdc;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 2rem 20%;
   width: 100%;
   @media screen and (max-width: 768px) {
+    padding: 3rem 10%;
   }
 `;
 const PaymentAddress = styled.div`
   display: flex;
-  width: 100%;
+  flex-direction: column;
+  padding-bottom: 2rem;
 `;
 const PaymentProducts = styled.div`
   display: flex;
-  width: 100%;
+  flex-direction: column;
+  padding-bottom: 2rem;
 `;
 const PaymentCard = styled.div`
   display: flex;
-  width: 100%;
+  flex-direction: column;
+  padding-bottom: 2rem;
+  button {
+    cursor: pointer;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 10px;
+    color: #fff;
+    border-radius: 20px;
+    padding: 10px 20px;
+    background: #fa4e5c;
+    border: none;
+    font-size: 15px;
+    opacity: 0.7;
+    :hover {
+      opacity: 1;
+    }
+  }
+
+  .payment__priceContainer {
+    border-bottom: 2px solid #000000;
+  }
 `;
-const Content = styled.div`
-  flex: 0.8;
-`;
+const Content = styled.div``;
 const Title = styled.div`
-  flex: 0.2;
+  padding-bottom: 1rem;
+  font-size: clamp(1rem, 2vw, 3rem);
+  color: #fa4e5c;
+
+  span {
+    color: black;
+    font-size: clamp(1rem, 1vw, 3rem);
+  }
 `;

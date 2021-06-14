@@ -119,6 +119,7 @@ function Profile() {
       </Profilescontent>
       <Orderhistory>
         <h1>Order history</h1>
+        {orderList.length <= 0 && <p>No order </p>}
         <OrderContainer>
           {orderList.map((order) => (
             <Orderlist order={order} />
@@ -194,6 +195,9 @@ const Orderhistory = styled.div`
   padding: 2rem 20%;
   h1 {
     color: #fa4e5c;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 2rem 5%;
   }
 `;
 const OrderContainer = styled.div``;

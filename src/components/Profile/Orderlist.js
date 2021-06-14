@@ -4,15 +4,28 @@ import moment from "moment";
 import CurrencyFormat from "react-currency-format";
 
 function Orderlist({ order }) {
-  console.log(order);
+  console.log(order.data.deliveryAddress.address[0]);
   return (
     <OrderlistContainer>
-      <h5>Order number: {order.id}</h5>
+      <h3>Order number: {order.id}</h3>
       <h5>
         Order date:{" "}
         {moment.unix(order.data.created).format("MMMM Do YYYY, h:mma")}
       </h5>
-      <h5>Ship to: </h5>
+      <h5>
+        Ship to: {order.data.deliveryAddress.address[0]},{" "}
+        {order.data.deliveryAddress.postalCode[0]}
+      </h5>
+      <CurrencyFormat
+        renderText={(value) => (
+          <h5 className="order__total">Order Total: {value}</h5>
+        )}
+        decimalScale={2}
+        value={order.data.amount / 100}
+        displayType={"text"}
+        thousandSeparator={true}
+        prefix={"$"}
+      />
       {order.data.shoppinglist.map((item) => (
         <OrderHistoryContent>
           <img
@@ -30,16 +43,6 @@ function Orderlist({ order }) {
           </HistoryContent>
         </OrderHistoryContent>
       ))}
-      <CurrencyFormat
-        renderText={(value) => (
-          <h3 className="order__total">Order Total: {value}</h3>
-        )}
-        decimalScale={2}
-        value={order.data.amount / 100}
-        displayType={"text"}
-        thousandSeparator={true}
-        prefix={"$"}
-      />
     </OrderlistContainer>
   );
 }
@@ -50,6 +53,7 @@ const OrderlistContainer = styled.div`
   padding: 2rem;
   height: 100%;
   border-bottom: 3px solid #000000;
+
   h3 {
     font-size: clamp(1rem, 1.2vw, 3rem);
     color: #fa4e5c;

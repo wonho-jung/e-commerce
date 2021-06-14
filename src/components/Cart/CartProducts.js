@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { removeFromCart, selectRemoveFromCart } from "../../features/userSlice";
 
-function CartProducts({ index, key, img, alt, name, desc, price }) {
+function CartProducts({ index, key, img, alt, name, desc, price, disable }) {
   const test = useSelector(selectRemoveFromCart);
   const dispatch = useDispatch();
   const removeFromBasket = () => {
@@ -19,7 +19,9 @@ function CartProducts({ index, key, img, alt, name, desc, price }) {
         <h3>{name}</h3>
         <p>{desc}</p>
         <h5>${price}</h5>
-        <Button onClick={removeFromBasket}>Remove from Cart</Button>
+        {!disable && (
+          <Button onClick={removeFromBasket}>Remove from Cart</Button>
+        )}
       </Content>
     </CartProductsContainer>
   );

@@ -158,17 +158,14 @@ const ProductsContainer = styled.div`
   padding: 2rem 0;
   background: url(${phonebg});
   width: 100%;
-  height: 130vh;
+  height: 110vh;
   background-size: cover;
   background-position: center;
   @media screen and (max-width: 1200px) {
-    height: 100vh;
+    height: 100%;
   }
   @media screen and (max-width: 1050px) {
     height: 100%;
-  }
-  @media screen and (max-width: 768px) {
-    background: url(${phonebg});
   }
 `;
 // const ProductCard = styled.div`
