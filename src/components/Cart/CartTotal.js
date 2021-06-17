@@ -67,11 +67,11 @@ function CartTotal() {
     }
   };
   const handleCheckOut = () => {
-    if (address && postalCode) {
+    if (address && postalCode && carts.length > 0) {
       dispatch(deliveryAddress({ address, postalCode }));
       history.push("/payment");
     } else {
-      alert("Check your address");
+      alert("Check your address or your shopping list is empty");
     }
   };
   return (

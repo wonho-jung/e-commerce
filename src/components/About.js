@@ -37,9 +37,7 @@ function About() {
               <h3>Jay</h3>
               <p>
                 " Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Itaque esse atque magni rem consectetur aspernatur id
-                necessitatibus optio error, cumque minima quidem. Commodi dolore
-                deleniti eos enim voluptas cum iste."
+                Itaque esse atque magni rem consectetur."
               </p>
             </ContentBox>
           </SwiperSlide>
@@ -50,9 +48,7 @@ function About() {
               <h3>Edward</h3>
               <p>
                 " Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Itaque esse atque magni rem consectetur aspernatur id
-                necessitatibus optio error, cumque minima quidem. Commodi dolore
-                deleniti eos enim voluptas cum iste."
+                Itaque esse atque magni rem consectetur."
               </p>
             </ContentBox>
           </SwiperSlide>
@@ -62,9 +58,7 @@ function About() {
               <h3>David</h3>
               <p>
                 " Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Itaque esse atque magni rem consectetur aspernatur id
-                necessitatibus optio error, cumque minima quidem. Commodi dolore
-                deleniti eos enim voluptas cum iste."
+                Itaque esse atque magni rem consectetur."
               </p>
             </ContentBox>{" "}
           </SwiperSlide>
@@ -74,9 +68,7 @@ function About() {
               <h3>Samuel</h3>
               <p>
                 " Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Itaque esse atque magni rem consectetur aspernatur id
-                necessitatibus optio error, cumque minima quidem. Commodi dolore
-                deleniti eos enim voluptas cum iste."
+                Itaque esse atque magni rem consectetur."
               </p>
             </ContentBox>{" "}
           </SwiperSlide>
@@ -86,9 +78,7 @@ function About() {
               <h3>Joash</h3>
               <p>
                 " Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Itaque esse atque magni rem consectetur aspernatur id
-                necessitatibus optio error, cumque minima quidem. Commodi dolore
-                deleniti eos enim voluptas cum iste."
+                Itaque esse atque magni rem consectetur."
               </p>
             </ContentBox>{" "}
           </SwiperSlide>
@@ -98,9 +88,7 @@ function About() {
               <h3>Poul</h3>
               <p>
                 " Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Itaque esse atque magni rem consectetur aspernatur id
-                necessitatibus optio error, cumque minima quidem. Commodi dolore
-                deleniti eos enim voluptas cum iste."
+                Itaque esse atque magni rem consectetur."
               </p>
             </ContentBox>{" "}
           </SwiperSlide>
@@ -110,9 +98,7 @@ function About() {
               <h3>Sara</h3>
               <p>
                 " Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Itaque esse atque magni rem consectetur aspernatur id
-                necessitatibus optio error, cumque minima quidem. Commodi dolore
-                deleniti eos enim voluptas cum iste."
+                Itaque esse atque magni rem consectetur."
               </p>
             </ContentBox>{" "}
           </SwiperSlide>
@@ -122,9 +108,7 @@ function About() {
               <h3>Stella</h3>
               <p>
                 " Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Itaque esse atque magni rem consectetur aspernatur id
-                necessitatibus optio error, cumque minima quidem. Commodi dolore
-                deleniti eos enim voluptas cum iste."
+                Itaque esse atque magni rem consectetur."
               </p>
             </ContentBox>{" "}
           </SwiperSlide>
@@ -134,9 +118,7 @@ function About() {
               <h3>Jun</h3>
               <p>
                 " Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Itaque esse atque magni rem consectetur aspernatur id
-                necessitatibus optio error, cumque minima quidem. Commodi dolore
-                deleniti eos enim voluptas cum iste."
+                Itaque esse atque magni rem consectetur."
               </p>
             </ContentBox>{" "}
           </SwiperSlide>
@@ -195,11 +177,11 @@ const ContentBox = styled.div`
   h3 {
     font-size: clamp(1rem, 1.2vw, 3rem);
 
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
   }
   p {
     text-shadow: 1px 1px gray;
-    font-size: clamp(1rem, 1.2vw, 3rem);
+    font-size: clamp(1rem, 1vw, 3rem);
     font-weight: 400;
   }
 `;
