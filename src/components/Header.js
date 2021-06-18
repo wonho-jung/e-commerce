@@ -28,7 +28,7 @@ function Header() {
 
   const scroll = () => {
     if (window.scrollY > 200) {
-      setNav("black");
+      setNav("#f29d0a");
     } else {
       setNav("transparent");
     }
@@ -39,7 +39,7 @@ function Header() {
   }, []);
   console.log(shoppingCart.length);
   return (
-    <HeaderContainer style={{ backgroundColor: nav }}>
+    <HeaderContainer style={{ backgroundColor: nav, transition: "0.5s" }}>
       <NavImg>
         <img src={logo} alt="" />
       </NavImg>
