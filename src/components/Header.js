@@ -39,7 +39,15 @@ function Header() {
   }, []);
   console.log(shoppingCart.length);
   return (
-    <HeaderContainer style={{ backgroundColor: nav, transition: "0.5s" }}>
+    <HeaderContainer
+      style={{
+        backgroundColor: nav,
+        transition: "0.5s",
+        position: "fixed",
+        top: "0",
+        left: "0",
+      }}
+    >
       <NavImg>
         <img src={logo} alt="" />
       </NavImg>
@@ -157,9 +165,6 @@ function Header() {
 export default Header;
 
 const HeaderContainer = styled.nav`
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   z-index: 400;
   display: flex;

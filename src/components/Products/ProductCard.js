@@ -46,13 +46,13 @@ const ProductCardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   img {
-    max-width: 300px;
+    max-width: 250px;
     @media screen and (max-width: 1200px) {
       max-width: 200px;
     }
   }
   .chocolate {
-    max-width: 230px;
+    max-width: 180px;
     padding-bottom: 20px;
     @media screen and (max-width: 1200px) {
       max-width: 160px;
@@ -60,7 +60,7 @@ const ProductCardContainer = styled.div`
     }
   }
   .special {
-    max-width: 215px;
+    max-width: 180px;
     @media screen and (max-width: 1200px) {
       max-width: 145px;
     }

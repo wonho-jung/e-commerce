@@ -38,8 +38,6 @@ function Hero() {
 
 export default Hero;
 const HeroContainer = styled.div`
-  margin-top: -80px;
-
   position: relative;
   height: 100vh;
   z-index: 1;

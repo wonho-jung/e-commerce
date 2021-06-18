@@ -130,7 +130,7 @@ const FruitBoxOne = styled.div`
     }
   }
 
-  @media screen and (max-width: 850px) {
+  @media screen and (max-width: 1150px) {
     div {
       width: 50%;
     }
@@ -179,7 +179,7 @@ const FruitBoxTwo = styled.div`
     }
   }
 
-  @media screen and (max-width: 850px) {
+  @media screen and (max-width: 1150px) {
     div {
       width: 50%;
     }

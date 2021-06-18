@@ -25,8 +25,6 @@ function ProductsHero() {
 
 export default ProductsHero;
 const HeroContainer = styled.div`
-  margin-top: -80px;
-
   position: relative;
   height: 50vh;
   z-index: 1;
