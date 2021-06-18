@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import logo from "../assets/logo.png";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
@@ -14,6 +14,8 @@ function Header() {
   const history = useHistory();
   const user = useSelector(selectUser);
   const [clicked, setClicked] = useState(false);
+  const [nav, setNav] = useState("transparent");
+  console.log(nav);
   console.log(user?.user);
   const handleClick = () => setClicked(!clicked);
   const dispatch = useDispatch();
@@ -23,9 +25,21 @@ function Header() {
     dispatch(login({ user: null }));
   };
   const shoppingCart = useSelector(selectAddToCart);
+
+  const scroll = () => {
+    if (window.scrollY > 200) {
+      setNav("black");
+    } else {
+      setNav("transparent");
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", scroll);
+    return () => window.removeEventListener("scroll", scroll);
+  }, []);
   console.log(shoppingCart.length);
   return (
-    <HeaderContainer>
+    <HeaderContainer style={{ backgroundColor: nav }}>
       <NavImg>
         <img src={logo} alt="" />
       </NavImg>
@@ -143,16 +157,15 @@ function Header() {
 export default Header;
 
 const HeaderContainer = styled.nav`
-  /* background: transparent; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 400;
   display: flex;
   justify-content: space-around;
   color: #fff;
-  /* padding: 0.5rem calc((100vw- 1300px) / 2); */
   height: 80px;
-  z-index: 100;
-  /* @media screen and (max-width: 768px) {
-    height: 160px;
-  } */
 
   button {
     font-size: 13px;
