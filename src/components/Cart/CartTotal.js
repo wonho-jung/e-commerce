@@ -23,7 +23,7 @@ function CartTotal() {
   const carts = useSelector(selectAddToCart);
   const [address, setAddress] = useState("");
   const [postalCode, setPostalCode] = useState("");
-  console.log(carts);
+  console.log(address.length);
   useEffect(() => {
     if (user) {
       db.collection("users")
@@ -67,7 +67,13 @@ function CartTotal() {
     }
   };
   const handleCheckOut = () => {
-    if (address && postalCode && carts.length > 0) {
+    if (
+      address &&
+      postalCode &&
+      carts.length > 0 &&
+      address.length > 0 &&
+      postalCode.length > 0
+    ) {
       dispatch(deliveryAddress({ address, postalCode }));
       history.push("/payment");
     } else {
