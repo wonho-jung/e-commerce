@@ -39,7 +39,7 @@ function Banner() {
         <img src={smoothie} alt="" />
       </BannerCenter>
       <BannerRight>
-        <ContentOne data-aos="fade-left" data-aos-duration="1000">
+        <ContentOne data-aos="fade-right" data-aos-duration="1000">
           <Content>
             <h1>NO ADDITIVES</h1>
             <p>
@@ -51,7 +51,7 @@ function Banner() {
             <BlockOutlinedIcon />
           </Icon>
         </ContentOne>
-        <ContentTwo data-aos="fade-left" data-aos-duration="1000">
+        <ContentTwo data-aos="fade-right" data-aos-duration="1000">
           <Content>
             <h1>A LOT OF ENERGY</h1>
             <p>

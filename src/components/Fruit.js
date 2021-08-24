@@ -44,8 +44,7 @@ function Fruit() {
       </FruitBoxOne>
       <FruitBoxTwo>
         <div>
-          {" "}
-          <img src={lemon} alt="" />
+          {/* hello */} <img src={lemon} alt="" />
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi qui
             temporibus harum necessitatibus.

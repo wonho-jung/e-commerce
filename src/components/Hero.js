@@ -19,10 +19,10 @@ function Hero() {
           <p data-aos="fade-right" data-aos-duration="1000">
             Sweets, Smoothies
           </p>
-          <p data-aos="fade-right" data-aos-duration="2000">
+          <p data-aos="fade-right" data-aos-duration="1500">
             desert e-commerce
           </p>
-          <Button data-aos="fade-right" data-aos-duration="3000">
+          <Button data-aos="fade-right" data-aos-duration="2000">
             <Link
               style={{ textDecoration: "none", color: "#fff" }}
               to="/products"
@@ -38,6 +38,7 @@ function Hero() {
 
 export default Hero;
 const HeroContainer = styled.div`
+  padding-top: 3rem;
   position: relative;
   height: 100vh;
   z-index: 1;

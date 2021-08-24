@@ -62,7 +62,7 @@ function Payment() {
         db.collection("payment")
           .doc(user?.uid)
           .collection("orders")
-          .doc(paymentIntent.id)
+          .doc(paymentIntent?.id)
           .set({
             deliveryAddress: deliveryAddress,
             shoppinglist: shoppingCart,

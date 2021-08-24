@@ -49,7 +49,7 @@ function Header() {
       }}
     >
       <NavImg>
-        <img src={logo} alt="" />
+        <img src={logo} alt="" className="mobile-logo" />
       </NavImg>
       <MobileNavItme>
         {clicked ? (
