@@ -15,9 +15,9 @@
 
 ## Features
 
-- Add/Remove items to cart
-- Get Order history from firebase db
-- Save address in the firebase db
+- Provide a way for users to add and remove items from their cart.
+- Access a user's order history stored in the Firebase database.
+- Store and update a user's address in the Firebase database.
 - Payment with Stripe
 
 
