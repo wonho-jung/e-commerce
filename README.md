@@ -29,3 +29,24 @@
 - Cart & Payment
 
 
+## Installation
+
+```bash
+git clone https://github.com/wonho-jung/e-commerce.git
+```
+
+Go to the project directory
+
+```bash
+npm install
+# or
+yarn install
+```
+
+## Getting Started
+
+```bash
+npm start 
+# or
+yarn start
+```
